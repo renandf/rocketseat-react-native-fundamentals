@@ -27,20 +27,12 @@ interface Product {
   title: string;
   image_url: string;
   price: number;
-  // formattedPrice?: string;
 }
 
 const Dashboard: React.FC = () => {
   const { addToCart } = useCart();
 
   const [products, setProducts] = useState<Product[]>([]);
-
-  // async function loadProducts(): Promise<void> {
-  //   const data = await api.get('/products');
-
-  //   console.log(data);
-  // }
-  // loadProducts();
 
   useEffect(() => {
     async function loadProducts(): Promise<void> {
@@ -53,7 +45,7 @@ const Dashboard: React.FC = () => {
   }, []);
 
   function handleAddToCart(item: Product): void {
-    // TODO
+    addToCart(item);
   }
 
   return (
