@@ -3,6 +3,7 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 
 import { View, Image } from 'react-native';
 
+import { isConditionalExpression } from 'typescript';
 import formatValue from '../../utils/formatValue';
 import { useCart } from '../../hooks/cart';
 import api from '../../services/api';
@@ -26,6 +27,7 @@ interface Product {
   title: string;
   image_url: string;
   price: number;
+  // formattedPrice?: string;
 }
 
 const Dashboard: React.FC = () => {
@@ -33,9 +35,18 @@ const Dashboard: React.FC = () => {
 
   const [products, setProducts] = useState<Product[]>([]);
 
+  // async function loadProducts(): Promise<void> {
+  //   const data = await api.get('/products');
+
+  //   console.log(data);
+  // }
+  // loadProducts();
+
   useEffect(() => {
     async function loadProducts(): Promise<void> {
-      // TODO
+      const response = await api.get('/products');
+
+      setProducts(response.data);
     }
 
     loadProducts();
